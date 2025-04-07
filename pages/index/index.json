@@ -1,5 +1,8 @@
 {
   "usingComponents": {
-    "navigation-bar": "/components/navigation-bar/navigation-bar"
+    "van-grid": "/miniprogram_npm/@vant/weapp/grid/index",
+    "van-grid-item": "/miniprogram_npm/@vant/weapp/grid-item/index",
+    "van-icon": "/miniprogram_npm/@vant/weapp/icon/index",
+    "ai-chat": "/components/ai-chat/ai-chat"
   }
 }

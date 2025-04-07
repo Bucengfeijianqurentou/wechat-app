@@ -70,7 +70,7 @@
     <text class="link">查看全部</text>
   </view>
 
-  <view class="assistant">
+  <view class="assistant" bind:tap="onTapAssistant">
     <view class="assistant-header">
       <text class="icon">🤖</text>
       <text>AI助手</text>
@@ -82,4 +82,7 @@
       <text>如何查看我的借用记录？</text>
     </view>
   </view>
+
+  <!-- AI助手对话框组件 -->
+  <ai-chat show="{{showAiChat}}" bind:close="onCloseAiChat" />
 </view>
