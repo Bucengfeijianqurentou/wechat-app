@@ -2,8 +2,10 @@
   show="{{ show }}"
   position="bottom"
   round
-  custom-style="min-height: 60%"
+  custom-style="height: 100vh;"
   bind:close="onClose"
+  safe-area-inset-bottom
+  overlay="{{ true }}"
 >
   <view class="chat-container">
     <!-- 顶部标题栏 -->
@@ -21,6 +23,8 @@
       class="chat-content"
       scroll-into-view="msg-{{messages.length-1}}"
       scroll-with-animation
+      enhanced
+      show-scrollbar="{{false}}"
     >
       <block wx:for="{{ messages }}" wx:key="index">
         <view class="message {{item.type}}" id="msg-{{index}}">
@@ -36,38 +40,40 @@
           </view>
         </view>
       </block>
-    </scroll-view>
 
-    <!-- 预设问题区域 -->
-    <view class="preset-questions" wx:if="{{showPresetQuestions}}">
-      <view 
-        class="question-item" 
-        wx:for="{{presetQuestions}}" 
-        wx:key="index"
-        bind:tap="onQuestionTap"
-        data-question="{{item}}"
-      >
-        {{item}}
+      <!-- 预设问题区域 -->
+      <view class="preset-questions" wx:if="{{showPresetQuestions}}">
+        <view 
+          class="question-item" 
+          wx:for="{{presetQuestions}}" 
+          wx:key="index"
+          bind:tap="onQuestionTap"
+          data-question="{{item}}"
+        >
+          {{item}}
+        </view>
       </view>
-    </view>
+    </scroll-view>
 
     <!-- 底部输入区域 -->
     <view class="chat-footer">
-      <van-field
-        value="{{ inputValue }}"
-        placeholder="输入您的问题..."
-        border="{{ false }}"
-        bind:change="onInputChange"
-        custom-style="background: #f7f8fa; padding: 8rpx 24rpx; border-radius: 36rpx;"
-      >
+      <view class="input-wrapper">
+        <input
+          class="chat-input"
+          value="{{ inputValue }}"
+          placeholder="输入您的问题..."
+          confirm-type="send"
+          bindconfirm="onSend"
+          bindinput="onInputChange"
+          adjust-position="{{false}}"
+        />
         <van-button 
-          slot="button" 
           size="small" 
           type="primary" 
           bind:tap="onSend"
-          custom-style="border-radius: 36rpx;"
+          custom-class="send-button"
         >发送</van-button>
-      </van-field>
+      </view>
     </view>
   </view>
 </van-popup> 
