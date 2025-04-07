@@ -29,16 +29,16 @@
     ]
   },
   "usingComponents": {
-    "van-icon": "@vant/weapp/icon/index",
-    "van-cell": "@vant/weapp/cell/index",
-    "van-cell-group": "@vant/weapp/cell-group/index",
-    "van-grid": "@vant/weapp/grid/index",
-    "van-grid-item": "@vant/weapp/grid-item/index",
-    "van-image": "@vant/weapp/image/index",
-    "van-tabbar": "@vant/weapp/tabbar/index",
-    "van-tabbar-item": "@vant/weapp/tabbar-item/index",
-    "van-search": "@vant/weapp/search/index",
-    "van-button": "@vant/weapp/button/index"
+    "van-icon": "./miniprogram_npm/@vant/weapp/icon/index",
+    "van-cell": "./miniprogram_npm/@vant/weapp/cell/index",
+    "van-cell-group": "./miniprogram_npm/@vant/weapp/cell-group/index",
+    "van-grid": "./miniprogram_npm/@vant/weapp/grid/index",
+    "van-grid-item": "./miniprogram_npm/@vant/weapp/grid-item/index",
+    "van-image": "./miniprogram_npm/@vant/weapp/image/index",
+    "van-tabbar": "./miniprogram_npm/@vant/weapp/tabbar/index",
+    "van-tabbar-item": "./miniprogram_npm/@vant/weapp/tabbar-item/index",
+    "van-search": "./miniprogram_npm/@vant/weapp/search/index",
+    "van-button": "./miniprogram_npm/@vant/weapp/button/index"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",
