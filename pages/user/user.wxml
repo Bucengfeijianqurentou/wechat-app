@@ -1,0 +1,9 @@
+<!--user.wxml-->
+<view class="container">
+  <view class="user-card">
+    <van-cell-group inset>
+      <van-cell title="用户名" value="{{userInfo.name}}" />
+      <van-cell title="手机号" value="{{userInfo.phone}}" />
+    </van-cell-group>
+  </view>
+</view> 

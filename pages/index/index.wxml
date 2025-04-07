@@ -1,0 +1,82 @@
+<!--index.wxml-->
+<view class="page">
+  <view class="header">
+    <text>资产状态：正常</text>
+  </view>
+
+  <van-grid border="{{ false }}" column-num="3" custom-class="stats-grid">
+    <van-grid-item use-slot custom-class="stats-grid-item">
+      <view class="stats-item">
+        <view class="stats-num primary">12</view>
+        <view class="stats-label">本月借用</view>
+      </view>
+    </van-grid-item>
+    <van-grid-item use-slot custom-class="stats-grid-item">
+      <view class="stats-item">
+        <view class="stats-num warning">3</view>
+        <view class="stats-label">待归还</view>
+      </view>
+    </van-grid-item>
+    <van-grid-item use-slot custom-class="stats-grid-item">
+      <view class="stats-item">
+        <view class="stats-num success">98%</view>
+        <view class="stats-label">完好率</view>
+      </view>
+    </van-grid-item>
+  </van-grid>
+
+  <view class="asset-cards">
+    <view class="asset-card blue-grad">
+      <view class="asset-content">
+        <view class="asset-number">5000</view>
+        <view class="asset-label">我的资产</view>
+      </view>
+      <van-icon name="balance-list-o" size="48rpx" class="asset-icon" />
+    </view>
+    <view class="asset-card green-grad">
+      <view class="asset-content">
+        <view class="asset-number">3000</view>
+        <view class="asset-label">可借资产</view>
+      </view>
+      <van-icon name="shop-o" size="48rpx" class="asset-icon" />
+    </view>
+  </view>
+
+  <text class="title">快捷操作</text>
+  <view class="quick-actions">
+    <view class="quick-btn red">
+      <van-icon name="scan" size="48rpx" color="#fff" />
+      <text>扫码借用</text>
+    </view>
+    <view class="quick-btn orange">
+      <van-icon name="notes-o" size="48rpx" color="#fff" />
+      <text>申请借用</text>
+    </view>
+    <view class="quick-btn blue">
+      <van-icon name="replay" size="48rpx" color="#fff" />
+      <text>归还资产</text>
+    </view>
+    <view class="quick-btn purple">
+      <van-icon name="setting-o" size="48rpx" color="#fff" />
+      <text>申请维修</text>
+    </view>
+  </view>
+
+  <view class="section-header">
+    <text>最近借用</text>
+    <text class="link">查看全部</text>
+  </view>
+
+  <view class="assistant">
+    <view class="assistant-header">
+      <text class="icon">🤖</text>
+      <text>AI助手</text>
+    </view>
+    <text class="desc">有任何资产管理相关的问题都可以问我</text>
+    <view class="questions">
+      <text>如何申请资产借用？</text>
+      <text>资产借用的期限是多久？</text>
+      <text>如何查看我的借用记录？</text>
+    </view>
+  </view>
+</view>
