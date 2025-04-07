@@ -6,12 +6,13 @@ Page({
     totalAssets: 0,
     availableAssets: 0,
     borrowedAssets: 0,
-    maintenanceAssets: 0
+    maintenanceAssets: 0,
+    assetsList: []
   },
 
   onLoad() {
     this.setCurrentDate();
-    this.getAssetsStats();
+    this.fetchAssetsList();
   },
 
   onShow() {
@@ -33,15 +34,74 @@ Page({
     });
   },
 
-  // 获取资产统计数据
-  getAssetsStats() {
-    // TODO: 实现获取资产统计数据的逻辑
-    // 这里先使用模拟数据
+  // 获取资产列表数据
+  fetchAssetsList() {
+    wx.request({
+      url: 'http://localhost:8080/xiaoyuanzichan/shangpin/listAll',
+      method: 'GET',
+      success: (res) => {
+        if (res.data.code === 0) {
+          // 对数据进行倒序排列
+          const sortedList = res.data.data.sort((a, b) => b.id - a.id);
+          this.setData({
+            assetsList: sortedList
+          });
+          // 更新资产统计数据
+          this.updateAssetsStats(sortedList);
+        } else {
+          wx.showToast({
+            title: '获取数据失败',
+            icon: 'error'
+          });
+        }
+      },
+      fail: (err) => {
+        console.error('请求失败：', err);
+        wx.showToast({
+          title: '网络错误',
+          icon: 'error'
+        });
+      }
+    });
+  },
+
+  // 更新资产统计数据
+  updateAssetsStats(list) {
+    const stats = {
+      total: list.length,
+      available: 0,
+      borrowed: 0,
+      maintenance: 0
+    };
+
+    list.forEach(item => {
+      if (item.shangpinTypes === 1) {
+        stats.available++;
+      } else if (item.shangpinTypes === 2) {
+        stats.borrowed++;
+      } else {
+        stats.maintenance++;
+      }
+    });
+
     this.setData({
-      totalAssets: 128,
-      availableAssets: 89,
-      borrowedAssets: 35,
-      maintenanceAssets: 4
+      totalAssets: stats.total,
+      availableAssets: stats.available,
+      borrowedAssets: stats.borrowed,
+      maintenanceAssets: stats.maintenance
+    });
+  },
+
+  // 刷新数据
+  onRefresh() {
+    wx.showLoading({
+      title: '刷新中...',
+    });
+    this.fetchAssetsList();
+    wx.hideLoading();
+    wx.showToast({
+      title: '刷新成功',
+      icon: 'success'
     });
   },
 
@@ -54,10 +114,19 @@ Page({
 
   // 搜索提交
   onSearch() {
-    // TODO: 实现搜索逻辑
-    wx.showToast({
-      title: '搜索功能开发中',
-      icon: 'none'
+    const keyword = this.data.searchValue.trim();
+    if (!keyword) {
+      this.fetchAssetsList();
+      return;
+    }
+    
+    const filteredList = this.data.assetsList.filter(item => 
+      item.shangpinName.includes(keyword) || 
+      item.shangpinUuidNumber.includes(keyword)
+    );
+    
+    this.setData({
+      assetsList: filteredList
     });
   },
 
@@ -67,14 +136,24 @@ Page({
     this.setData({
       currentFilter: type
     });
-    // TODO: 实现筛选逻辑
-  },
-
-  // 刷新数据
-  onRefresh() {
-    wx.showToast({
-      title: '刷新成功',
-      icon: 'success'
+    
+    if (type === 'all') {
+      this.fetchAssetsList();
+      return;
+    }
+    
+    const typeMap = {
+      'available': 1,
+      'borrowed': 2,
+      'maintenance': 3
+    };
+    
+    const filteredList = this.data.assetsList.filter(item => 
+      item.shangpinTypes === typeMap[type]
+    );
+    
+    this.setData({
+      assetsList: filteredList
     });
   },
 

@@ -189,4 +189,111 @@
 .float-button:active {
   transform: scale(0.95);
   box-shadow: 0 2rpx 6rpx rgba(25, 137, 250, 0.3);
+}
+
+/* 资产列表样式 */
+.assets-list {
+  padding: 20rpx;
+}
+
+.asset-item {
+  background: #fff;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  position: relative;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.asset-image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 8rpx;
+  margin-right: 20rpx;
+}
+
+.asset-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.asset-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.asset-number {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 8rpx;
+}
+
+.asset-stock {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 8rpx;
+}
+
+.asset-price {
+  font-size: 28rpx;
+  color: #ff6b6b;
+  font-weight: bold;
+}
+
+.asset-status {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+}
+
+.status-available {
+  background: #e8f5e9;
+  color: #4caf50;
+}
+
+.status-borrowed {
+  background: #fff3e0;
+  color: #ff9800;
+}
+
+.status-maintenance {
+  background: #ffebee;
+  color: #f44336;
+}
+
+/* 空状态样式 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60rpx 0;
+}
+
+.empty-text {
+  margin-top: 30rpx;
+  font-size: 28rpx;
+  color: #969799;
+}
+
+.empty-tips {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #c8c9cc;
+}
+
+.refresh-btn {
+  margin-top: 30rpx;
+}
+
+.refresh-icon {
+  margin-right: 8rpx;
 } 

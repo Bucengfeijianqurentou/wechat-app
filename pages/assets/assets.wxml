@@ -54,7 +54,23 @@
 
   <!-- 资产列表区域 -->
   <view class="assets-container">
-    <view class="empty-state">
+    <block wx:if="{{assetsList && assetsList.length > 0}}">
+      <view class="assets-list">
+        <view class="asset-item" wx:for="{{assetsList}}" wx:key="id">
+          <image class="asset-image" src="{{'http://localhost:8080' + item.shangpinPhoto}}" mode="aspectFill"></image>
+          <view class="asset-info">
+            <view class="asset-name">{{item.shangpinName}}</view>
+            <view class="asset-number">编号：{{item.shangpinUuidNumber}}</view>
+            <view class="asset-stock">库存：{{item.shangpinKucunNumber}}</view>
+            <view class="asset-price">价格：¥{{item.price}}</view>
+          </view>
+          <view class="asset-status {{item.shangpinTypes === 1 ? 'status-available' : item.shangpinTypes === 2 ? 'status-borrowed' : 'status-maintenance'}}">
+            {{item.shangpinTypes === 1 ? '可借用' : item.shangpinTypes === 2 ? '已借出' : '维修中'}}
+          </view>
+        </view>
+      </view>
+    </block>
+    <view class="empty-state" wx:else>
       <van-icon name="description" size="96rpx" color="#969799" class="empty-icon" />
       <view class="empty-text">暂无资产数据</view>
       <view class="empty-tips">资产管理系统正在完善中，敬请期待</view>
