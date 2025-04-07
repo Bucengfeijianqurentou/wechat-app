@@ -64,8 +64,8 @@
             <view class="asset-stock">库存：{{item.shangpinKucunNumber}}</view>
             <view class="asset-price">价格：¥{{item.price}}</view>
           </view>
-          <view class="asset-status {{item.shangpinTypes === 1 ? 'status-available' : item.shangpinTypes === 2 ? 'status-borrowed' : 'status-maintenance'}}">
-            {{item.shangpinTypes === 1 ? '可借用' : item.shangpinTypes === 2 ? '已借出' : '维修中'}}
+          <view class="asset-status {{(item.shangpinTypes === 1 || item.shangpinTypes === 4) ? 'status-available' : item.shangpinTypes === 2 ? 'status-borrowed' : 'status-maintenance'}}">
+            {{(item.shangpinTypes === 1 || item.shangpinTypes === 4) ? '可借用' : item.shangpinTypes === 2 ? '已借出' : '维修中'}}
           </view>
         </view>
       </view>

@@ -1,0 +1,45 @@
+<view class="login-container">
+  <view class="login-header">
+    <van-icon name="cluster-o" size="180rpx" color="#1989fa" class="logo-icon" />
+    <text class="title">区块链资产管理平台</text>
+    <text class="subtitle">安全 · 透明 · 高效</text>
+  </view>
+
+  <view class="login-form">
+    <van-cell-group inset>
+      <van-field
+        value="{{ username }}"
+        clearable
+        label="用户名"
+        placeholder="请输入用户名"
+        bind:change="onUsernameChange"
+        left-icon="contact"
+      />
+      <van-field
+        value="{{ password }}"
+        type="password"
+        label="密码"
+        placeholder="请输入密码"
+        bind:change="onPasswordChange"
+        left-icon="closed-eye"
+      />
+    </van-cell-group>
+
+    <view class="button-container">
+      <van-button 
+        type="primary" 
+        block 
+        round 
+        loading="{{loading}}"
+        bind:tap="onLogin"
+        custom-class="login-button"
+      >
+        登录
+      </van-button>
+    </view>
+  </view>
+
+  <view class="login-footer">
+    <text class="footer-text">基于区块链技术的企业资产管理系统</text>
+  </view>
+</view> 

@@ -2,17 +2,15 @@
 <view class="page">
   <!-- 用户信息卡片 -->
   <view class="user-card">
-    <van-cell center custom-class="user-header" border="{{ false }}" is-link bind:tap="onTapUserInfo">
+    <van-cell center custom-class="user-header" border="{{ false }}">
       <view slot="title" class="user-info">
-        <van-image
-          round
-          width="120rpx"
-          height="120rpx"
-          src="{{ userInfo.avatarUrl || '/assets/home.png' }}"
-        />
+        <van-icon name="manager" size="120rpx" color="#ffffff" class="user-avatar" />
         <view class="user-detail">
-          <view class="user-name">{{ userInfo.nickName || '点击登录' }}</view>
-          <view class="user-id">工号：{{ userInfo.employeeId || '--' }}</view>
+          <view class="user-name">{{ username || '--' }}</view>
+          <view class="user-meta">
+            <text class="user-role">{{ role || '--' }}</text>
+            <text class="user-id">工号：{{ userId || '--' }}</text>
+          </view>
         </view>
       </view>
     </van-cell>

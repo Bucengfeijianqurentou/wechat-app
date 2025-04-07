@@ -1,11 +1,9 @@
 // user.js
 Page({
   data: {
-    userInfo: {
-      avatarUrl: '',
-      nickName: '',
-      employeeId: ''
-    },
+    username: '',
+    role: '',
+    userId: '',
     stats: {
       totalAssets: 0,
       borrowing: 0,
@@ -25,25 +23,38 @@ Page({
         active: 2
       });
     }
+    // 每次显示页面时更新用户信息
+    this.getUserInfo();
   },
 
   // 获取用户信息
   getUserInfo() {
-    // TODO: 实现获取用户信息的逻辑
-    // 这里先使用模拟数据
-    this.setData({
-      userInfo: {
-        avatarUrl: '',
-        nickName: '张三',
-        employeeId: 'EMP001'
-      }
-    });
+    const username = wx.getStorageSync('username');
+    const role = wx.getStorageSync('role');
+    const userId = wx.getStorageSync('userId');
+    
+    if (username && role) {
+      this.setData({
+        username,
+        role,
+        userId
+      });
+    } else {
+      // 如果没有用户信息，跳转到登录页
+      wx.redirectTo({
+        url: '/pages/login/login'
+      });
+    }
   },
 
   // 获取统计数据
   getStats() {
-    // TODO: 实现获取统计数据的逻辑
-    // 这里先使用模拟数据
+    const userId = wx.getStorageSync('userId');
+    if (!userId) {
+      return;
+    }
+
+    // TODO: 实现获取统计数据的API调用
     this.setData({
       stats: {
         totalAssets: 12,
@@ -99,19 +110,14 @@ Page({
       content: '确定要退出登录吗？',
       success: (res) => {
         if (res.confirm) {
-          // TODO: 实现退出登录逻辑
-          this.setData({
-            userInfo: {
-              avatarUrl: '',
-              nickName: '',
-              employeeId: ''
-            },
-            stats: {
-              totalAssets: 0,
-              borrowing: 0,
-              overdue: 0,
-              returned: 0
-            }
+          // 清除本地存储的用户信息
+          wx.removeStorageSync('userId');
+          wx.removeStorageSync('username');
+          wx.removeStorageSync('role');
+          
+          // 跳转到登录页
+          wx.redirectTo({
+            url: '/pages/login/login'
           });
         }
       }
