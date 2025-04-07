@@ -1,9 +1,7 @@
 <!--user.wxml-->
 <view class="container">
-  <view class="user-card">
-    <van-cell-group inset>
-      <van-cell title="用户名" value="{{userInfo.name}}" />
-      <van-cell title="手机号" value="{{userInfo.phone}}" />
-    </van-cell-group>
+  <view class="tip">
+    <van-icon name="user-circle-o" size="48rpx" color="#1989fa" />
+    <text>个人中心开发中，敬请期待...</text>
   </view>
 </view> 
