@@ -1,114 +1,82 @@
 <!--index.wxml-->
 <view class="page">
-  <!-- 顶部状态栏 -->
-  <view class="status-bar">
-    <view class="connection-status {{isConnected ? 'connected' : ''}}">
-      <view class="status-dot"></view>
-      <text>系统状态：{{isConnected ? '正常' : '异常'}}</text>
-    </view>
+  <view class="header">
+    <text>资产状态：正常</text>
   </view>
 
-  <!-- 资产概览卡片 -->
-  <view class="overview-section">
-    <view class="overview-cards">
-      <!-- 总资产卡片 -->
-      <view class="card total-assets">
-        <view class="card-content">
-          <view class="card-title">我的资产</view>
-          <view class="card-number">5000</view>
-          <view class="card-footer">
-            <text>总数量</text>
-            <van-icon name="arrow" />
-          </view>
-        </view>
-      </view>
-      
-      <!-- 可借资产卡片 -->
-      <view class="card available-assets">
-        <view class="card-content">
-          <view class="card-title">可借资产</view>
-          <view class="card-number">3000</view>
-          <view class="card-footer">
-            <text>当前可用</text>
-            <van-icon name="arrow" />
-          </view>
-        </view>
-      </view>
-    </view>
-
-    <!-- 资产统计数据 -->
-    <view class="stats-grid">
+  <van-grid border="{{ false }}" column-num="3" custom-class="stats-grid">
+    <van-grid-item use-slot custom-class="stats-grid-item">
       <view class="stats-item">
-        <view class="stats-value">12</view>
+        <view class="stats-num primary">12</view>
         <view class="stats-label">本月借用</view>
       </view>
+    </van-grid-item>
+    <van-grid-item use-slot custom-class="stats-grid-item">
       <view class="stats-item">
-        <view class="stats-value">3</view>
+        <view class="stats-num warning">3</view>
         <view class="stats-label">待归还</view>
       </view>
+    </van-grid-item>
+    <van-grid-item use-slot custom-class="stats-grid-item">
       <view class="stats-item">
-        <view class="stats-value">98%</view>
+        <view class="stats-num success">98%</view>
         <view class="stats-label">完好率</view>
       </view>
+    </van-grid-item>
+  </van-grid>
+
+  <view class="asset-cards">
+    <view class="asset-card blue-grad">
+      <view class="asset-content">
+        <view class="asset-number">5000</view>
+        <view class="asset-label">我的资产</view>
+      </view>
+      <van-icon name="balance-list-o" size="48rpx" class="asset-icon" />
+    </view>
+    <view class="asset-card green-grad">
+      <view class="asset-content">
+        <view class="asset-number">3000</view>
+        <view class="asset-label">可借资产</view>
+      </view>
+      <van-icon name="shop-o" size="48rpx" class="asset-icon" />
     </view>
   </view>
 
-  <!-- 快捷操作区域 -->
+  <text class="title">快捷操作</text>
   <view class="quick-actions">
-    <view class="section-title">快捷操作</view>
-    <view class="action-grid">
-      <view class="action-item" bindtap="onActionTap" data-type="borrow">
-        <view class="action-icon borrow">
-          <van-icon name="exchange" />
-        </view>
-        <text>互换借用</text>
-      </view>
-      <view class="action-item" bindtap="onActionTap" data-type="return">
-        <view class="action-icon return">
-          <van-icon name="replay" />
-        </view>
-        <text>申请归还</text>
-      </view>
-      <view class="action-item" bindtap="onActionTap" data-type="transfer">
-        <view class="action-icon transfer">
-          <van-icon name="exchange" />
-        </view>
-        <text>资产转移</text>
-      </view>
-      <view class="action-item" bindtap="onActionTap" data-type="maintain">
-        <view class="action-icon maintain">
-          <van-icon name="setting-o" />
-        </view>
-        <text>申请维护</text>
-      </view>
+    <view class="quick-btn red">
+      <van-icon name="scan" size="48rpx" color="#fff" />
+      <text>扫码借用</text>
+    </view>
+    <view class="quick-btn orange">
+      <van-icon name="notes-o" size="48rpx" color="#fff" />
+      <text>申请借用</text>
+    </view>
+    <view class="quick-btn blue">
+      <van-icon name="replay" size="48rpx" color="#fff" />
+      <text>归还资产</text>
+    </view>
+    <view class="quick-btn purple">
+      <van-icon name="setting-o" size="48rpx" color="#fff" />
+      <text>申请维修</text>
     </view>
   </view>
 
-  <!-- 最近借用 -->
-  <view class="recent-section">
-    <view class="section-title">
-      <text>最近借用</text>
-      <view class="title-right" bindtap="onViewAll">
-        <text>查看全部</text>
-        <van-icon name="arrow" />
-      </view>
-    </view>
-    
-    <!-- AI助手 -->
-    <view class="ai-assistant">
-      <van-icon name="service-o" size="48rpx" color="#1989fa" />
-      <view class="ai-content">
-        <text class="ai-title">AI助手</text>
-        <text class="ai-desc">有任何资产管理相关的问题都可以询问</text>
-      </view>
-      <van-icon name="arrow" />
-    </view>
+  <view class="section-header">
+    <text>最近借用</text>
+    <text class="link">查看全部</text>
+  </view>
 
-    <!-- 常见问题 -->
-    <view class="faq-list">
-      <view class="faq-item">如何申请资产借用？</view>
-      <view class="faq-item">资产借用的期限是多少？</view>
-      <view class="faq-item">如何查看我的借用记录？</view>
+  <view class="assistant">
+    <view class="assistant-header">
+      <text class="icon">🤖</text>
+      <text>AI助手</text>
+    </view>
+    <text class="desc">有任何资产管理相关的问题都可以问我</text>
+    <view class="questions">
+      <text>如何申请资产借用？</text>
+      <text>资产借用的期限是多久？</text>
+      <text>如何查看我的借用记录？</text>
     </view>
   </view>
 </view>
