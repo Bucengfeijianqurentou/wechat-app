@@ -56,7 +56,7 @@
   <view class="assets-container">
     <block wx:if="{{assetsList && assetsList.length > 0}}">
       <view class="assets-list">
-        <view class="asset-item" wx:for="{{assetsList}}" wx:key="id">
+        <view class="asset-item" wx:for="{{assetsList}}" wx:key="id" bind:tap="onAssetTap" data-id="{{item.id}}">
           <image class="asset-image" src="{{'http://localhost:8080' + item.shangpinPhoto}}" mode="aspectFill"></image>
           <view class="asset-info">
             <view class="asset-name">{{item.shangpinName}}</view>

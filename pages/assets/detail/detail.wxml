@@ -1,0 +1,54 @@
+<view class="detail-container" wx:if="{{asset}}">
+  <!-- 顶部大图 -->
+  <view class="image-container">
+    <image class="asset-image" src="{{asset.shangpinPhoto}}" mode="aspectFill"></image>
+    <view class="image-overlay">
+      <view class="asset-name">{{asset.shangpinName}}</view>
+      <view class="asset-price">¥{{asset.price}}</view>
+    </view>
+  </view>
+
+  <!-- 基本信息卡片 -->
+  <van-cell-group inset title="基本信息" custom-class="info-card">
+    <van-cell title="资产编号" value="{{asset.shangpinUuidNumber}}" />
+    <van-cell title="商品类型" value="{{typeMap[asset.shangpinTypes]}}" />
+    <van-cell title="资产状态">
+      <view slot="right-icon" class="status-tag status-{{asset.shangpinTypes}}">
+        {{statusMap[asset.shangpinTypes]}}
+      </view>
+    </van-cell>
+    <van-cell title="存放位置" value="{{locationMap[asset.didianTypes]}}" />
+    <van-cell title="库存数量" value="{{asset.shangpinKucunNumber}}" />
+  </van-cell-group>
+
+  <!-- 交易信息卡片 -->
+  <van-cell-group inset title="交易信息" custom-class="info-card">
+    <van-cell title="入库时间" value="{{asset.createTime}}" />
+    <van-cell title="交易哈希" value="{{asset.transactionHash}}" is-link bind:tap="showHashActions" />
+  </van-cell-group>
+
+  <!-- 交易哈希操作面板 -->
+  <van-action-sheet
+    show="{{ showHashSheet }}"
+    title="交易哈希"
+    bind:close="onHashSheetClose"
+    bind:select="onHashActionSelect"
+    actions="{{ hashActions }}"
+  >
+    <view class="hash-sheet-content">
+      <text class="hash-text" user-select>{{asset.transactionHash}}</text>
+    </view>
+  </van-action-sheet>
+
+  <!-- 资产描述卡片 -->
+  <van-cell-group inset title="资产描述" custom-class="info-card">
+    <view class="content-box">
+      <rich-text nodes="{{asset.shangpinContent}}"></rich-text>
+    </view>
+  </van-cell-group>
+</view>
+
+<!-- 加载状态 -->
+<view class="loading-container" wx:else>
+  <van-empty image="search" description="加载中..." />
+</view> 

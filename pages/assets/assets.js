@@ -176,5 +176,16 @@ Page({
         });
       }
     });
+  },
+
+  // 资产点击事件
+  onAssetTap(e) {
+    const id = e.currentTarget.dataset.id;
+    const asset = this.data.assetsList.find(item => item.id === id);
+    // 将资产数据转换为查询字符串
+    const query = encodeURIComponent(JSON.stringify(asset));
+    wx.navigateTo({
+      url: `/pages/assets/detail/detail?asset=${query}`
+    });
   }
 }); 
