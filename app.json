@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/user/user"
+    "pages/user/user",
+    "pages/assets/assets"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -11,14 +12,15 @@
     "backgroundColor": "#f8f8f8"
   },
   "tabBar": {
-    "custom": false,
-    "color": "#999999",
-    "selectedColor": "#1989fa",
-    "backgroundColor": "#ffffff",
+    "custom": true,
     "list": [
       {
         "pagePath": "pages/index/index",
         "text": "首页"
+      },
+      {
+        "pagePath": "pages/assets/assets",
+        "text": "资产"
       },
       {
         "pagePath": "pages/user/user",
@@ -32,7 +34,9 @@
     "van-cell-group": "@vant/weapp/cell-group/index",
     "van-grid": "@vant/weapp/grid/index",
     "van-grid-item": "@vant/weapp/grid-item/index",
-    "van-image": "@vant/weapp/image/index"
+    "van-image": "@vant/weapp/image/index",
+    "van-tabbar": "@vant/weapp/tabbar/index",
+    "van-tabbar-item": "@vant/weapp/tabbar-item/index"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",

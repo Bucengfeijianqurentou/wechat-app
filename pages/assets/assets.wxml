@@ -1,0 +1,7 @@
+<!--assets.wxml-->
+<view class="container">
+  <view class="tip">
+    <van-icon name="smile-o" size="48rpx" color="#1989fa" />
+    <text>资产页面开发中，敬请期待...</text>
+  </view>
+</view> 
