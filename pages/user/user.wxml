@@ -1,7 +1,108 @@
 <!--user.wxml-->
-<view class="container">
-  <view class="tip">
-    <van-icon name="user-circle-o" size="48rpx" color="#1989fa" />
-    <text>个人中心开发中，敬请期待...</text>
+<view class="page">
+  <!-- 用户信息卡片 -->
+  <view class="user-card">
+    <van-cell center custom-class="user-header" border="{{ false }}" is-link bind:tap="onTapUserInfo">
+      <view slot="title" class="user-info">
+        <van-image
+          round
+          width="120rpx"
+          height="120rpx"
+          src="{{ userInfo.avatarUrl || '/assets/home.png' }}"
+        />
+        <view class="user-detail">
+          <view class="user-name">{{ userInfo.nickName || '点击登录' }}</view>
+          <view class="user-id">工号：{{ userInfo.employeeId || '--' }}</view>
+        </view>
+      </view>
+    </van-cell>
+  </view>
+
+  <!-- 资产状态概览 -->
+  <view class="stats-section">
+    <van-grid column-num="4" border="{{ false }}" custom-class="stats-grid">
+      <van-grid-item custom-class="stats-grid-item" use-slot>
+        <view class="stats-item">
+          <view class="stats-num primary">{{ stats.totalAssets || '0' }}</view>
+          <view class="stats-label">总资产</view>
+        </view>
+      </van-grid-item>
+      <van-grid-item custom-class="stats-grid-item" use-slot>
+        <view class="stats-item">
+          <view class="stats-num warning">{{ stats.borrowing || '0' }}</view>
+          <view class="stats-label">借用中</view>
+        </view>
+      </van-grid-item>
+      <van-grid-item custom-class="stats-grid-item" use-slot>
+        <view class="stats-item">
+          <view class="stats-num info">{{ stats.overdue || '0' }}</view>
+          <view class="stats-label">已逾期</view>
+        </view>
+      </van-grid-item>
+      <van-grid-item custom-class="stats-grid-item" use-slot>
+        <view class="stats-item">
+          <view class="stats-num success">{{ stats.returned || '0' }}</view>
+          <view class="stats-label">已归还</view>
+        </view>
+      </van-grid-item>
+    </van-grid>
+  </view>
+
+  <!-- 快捷功能区 -->
+  <view class="section-block">
+    <view class="section-title">常用功能</view>
+    <van-grid border="{{ false }}" column-num="4" custom-class="function-grid">
+      <van-grid-item use-slot bind:tap="onTapFunction" data-type="scan">
+        <view class="function-item">
+          <van-icon name="scan" color="#1989fa" size="48rpx" />
+          <text>扫码借用</text>
+        </view>
+      </van-grid-item>
+      <van-grid-item use-slot bind:tap="onTapFunction" data-type="return">
+        <view class="function-item">
+          <van-icon name="replay" color="#07c160" size="48rpx" />
+          <text>归还资产</text>
+        </view>
+      </van-grid-item>
+      <van-grid-item use-slot bind:tap="onTapFunction" data-type="repair">
+        <view class="function-item">
+          <van-icon name="setting-o" color="#ff976a" size="48rpx" />
+          <text>申请维修</text>
+        </view>
+      </van-grid-item>
+      <van-grid-item use-slot bind:tap="onTapFunction" data-type="records">
+        <view class="function-item">
+          <van-icon name="notes-o" color="#7232dd" size="48rpx" />
+          <text>借用记录</text>
+        </view>
+      </van-grid-item>
+    </van-grid>
+  </view>
+
+  <!-- 资产管理 -->
+  <view class="section-block">
+    <view class="section-title">资产管理</view>
+    <van-cell-group inset custom-class="list-group">
+      <van-cell title="我的资产" icon="balance-list-o" is-link bind:tap="onTapFunction" data-type="myAssets" />
+      <van-cell title="借用申请" icon="peer-pay" is-link bind:tap="onTapFunction" data-type="borrow" />
+      <van-cell title="维修记录" icon="setting-o" is-link bind:tap="onTapFunction" data-type="repairRecords" />
+      <van-cell title="资产报表" icon="bar-chart" is-link bind:tap="onTapFunction" data-type="reports" />
+    </van-cell-group>
+  </view>
+
+  <!-- 账户设置 -->
+  <view class="section-block">
+    <view class="section-title">账户设置</view>
+    <van-cell-group inset custom-class="list-group">
+      <van-cell title="个人资料" icon="user-o" is-link bind:tap="onTapFunction" data-type="profile" />
+      <van-cell title="消息通知" icon="bell" is-link bind:tap="onTapFunction" data-type="notifications" />
+      <van-cell title="帮助中心" icon="question-o" is-link bind:tap="onTapFunction" data-type="help" />
+      <van-cell title="关于我们" icon="info-o" is-link bind:tap="onTapFunction" data-type="about" />
+    </van-cell-group>
+  </view>
+
+  <!-- 退出登录 -->
+  <view class="logout-btn">
+    <van-button block type="danger" bind:tap="onTapLogout">退出登录</van-button>
   </view>
 </view> 
