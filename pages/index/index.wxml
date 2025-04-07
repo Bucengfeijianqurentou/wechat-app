@@ -1,7 +1,10 @@
 <!--index.wxml-->
 <view class="page">
   <view class="header">
-    <text>资产状态：正常</text>
+    <view class="status-badge">
+      <van-icon name="checked" color="#07c160" size="32rpx" />
+      <text class="status-text">资产状态：<text class="status-value">正常</text></text>
+    </view>
   </view>
 
   <van-grid border="{{ false }}" column-num="3" custom-class="stats-grid">

@@ -13,6 +13,25 @@
   color: #666;
 }
 
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(7, 193, 96, 0.1);
+  padding: 12rpx 24rpx;
+  border-radius: 30rpx;
+  gap: 8rpx;
+}
+
+.status-text {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.status-value {
+  color: #07c160;
+  font-weight: 500;
+}
+
 .overview {
   display: flex;
   justify-content: space-between;
