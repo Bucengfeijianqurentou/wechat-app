@@ -1,7 +1,72 @@
 <!--assets.wxml-->
-<view class="container">
-  <view class="tip">
-    <van-icon name="smile-o" size="48rpx" color="#1989fa" />
-    <text>资产页面开发中，敬请期待...</text>
+<view class="page">
+  <!-- 头部搜索区域 -->
+  <view class="search-header">
+    <van-search
+      value="{{ searchValue }}"
+      placeholder="搜索资产编号/名称"
+      shape="round"
+      background="#ffffff"
+      bind:change="onSearchChange"
+      bind:search="onSearch"
+    />
+    <view class="filter-bar">
+      <view class="filter-item {{ currentFilter === 'all' ? 'active' : '' }}" bind:tap="onFilterTap" data-type="all">
+        <text>全部</text>
+      </view>
+      <view class="filter-item {{ currentFilter === 'available' ? 'active' : '' }}" bind:tap="onFilterTap" data-type="available">
+        <text>可借用</text>
+      </view>
+      <view class="filter-item {{ currentFilter === 'borrowed' ? 'active' : '' }}" bind:tap="onFilterTap" data-type="borrowed">
+        <text>已借出</text>
+      </view>
+      <view class="filter-item {{ currentFilter === 'maintenance' ? 'active' : '' }}" bind:tap="onFilterTap" data-type="maintenance">
+        <text>维修中</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 资产统计卡片 -->
+  <view class="stats-card">
+    <view class="stats-header">
+      <text class="stats-title">资产概况</text>
+      <view class="stats-date">{{ currentDate }}</view>
+    </view>
+    <view class="stats-content">
+      <view class="stats-item">
+        <view class="stats-value">{{ totalAssets || 0 }}</view>
+        <view class="stats-label">总数量</view>
+      </view>
+      <view class="stats-item">
+        <view class="stats-value available">{{ availableAssets || 0 }}</view>
+        <view class="stats-label">可借用</view>
+      </view>
+      <view class="stats-item">
+        <view class="stats-value borrowed">{{ borrowedAssets || 0 }}</view>
+        <view class="stats-label">已借出</view>
+      </view>
+      <view class="stats-item">
+        <view class="stats-value maintenance">{{ maintenanceAssets || 0 }}</view>
+        <view class="stats-label">维修中</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 资产列表区域 -->
+  <view class="assets-container">
+    <view class="empty-state">
+      <van-icon name="description" size="96rpx" color="#969799" class="empty-icon" />
+      <view class="empty-text">暂无资产数据</view>
+      <view class="empty-tips">资产管理系统正在完善中，敬请期待</view>
+      <van-button type="primary" size="small" round bind:tap="onRefresh" custom-class="refresh-btn">
+        <van-icon name="replay" class="refresh-icon" />
+        刷新
+      </van-button>
+    </view>
+  </view>
+
+  <!-- 悬浮操作按钮 -->
+  <view class="float-button" bind:tap="onScanTap">
+    <van-icon name="scan" size="48rpx" color="#fff" />
   </view>
 </view> 
