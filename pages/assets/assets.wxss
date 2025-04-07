@@ -22,8 +22,9 @@
 .page {
   min-height: 100vh;
   background-color: #f7f8fa;
-  padding-bottom: env(safe-area-inset-bottom);
+  padding-bottom: calc(100rpx + env(safe-area-inset-bottom));
   position: relative;
+  box-sizing: border-box;
 }
 
 /* 头部搜索区域 */
@@ -172,7 +173,7 @@
 .float-button {
   position: fixed;
   right: 32rpx;
-  bottom: calc(32rpx + env(safe-area-inset-bottom));
+  bottom: calc(120rpx + env(safe-area-inset-bottom));
   width: 100rpx;
   height: 100rpx;
   background: linear-gradient(135deg, #1989fa 0%, #0570db 100%);
@@ -182,6 +183,7 @@
   justify-content: center;
   box-shadow: 0 4rpx 12rpx rgba(25, 137, 250, 0.3);
   transition: all 0.3s;
+  z-index: 99;
 }
 
 .float-button:active {

@@ -1,0 +1,23 @@
+.van-tabbar-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #646566;
+  font-size: 24rpx;
+  line-height: 1;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.van-tabbar-item__icon {
+  margin-bottom: 8rpx;
+  font-size: 36rpx;
+}
+
+.van-tabbar-item__text {
+  font-size: 24rpx;
+  transform: scale(0.9);
+  transform-origin: center center;
+}
